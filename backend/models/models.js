@@ -8,9 +8,9 @@ const userSchema = new mongoose.Schema({
     age: {
         type: Number,
         required: true
-    },
+    }
 });
 
-const user = mongoose.model('users', userSchema);
+const User = mongoose.model('User', userSchema);
 
-export default user;
+export default User;
