@@ -41,7 +41,7 @@ const Home = () => {
 
     return (
         <div className="w-full max-h-full min-h-screen bg-slate-100">
-            <div className=' flex flex-col gap-4 items-center justify-center w-full h-screen'>
+            <div className=' flex flex-col gap-4 items-center justify-center h-screen'>
                 <div className='flex flex-col gap-4 items-center justify-center'>
                     <input type='text' name='name' value={formField.name} className=' ' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setformField({ ...formField, name: e.target.value })} />
                     <input type='number' name='age' value={formField.age} className='' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setformField({ ...formField, age: parseInt(e.target.value) || 0 })} />
