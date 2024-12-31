@@ -16,6 +16,7 @@ export const getAllRecords = async (req, res) => {
     try {
         const records = await user.find();
         res.status(200).json(records);
+        console.log(records)
     } catch (err) {
         res.status(500).send('Failed to fetch records: ' + err.message);
     }

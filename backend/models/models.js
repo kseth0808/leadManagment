@@ -13,4 +13,17 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-export default User;
+const employeeSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    }
+});
+
+const employee = mongoose.model('employee', employeeSchema);
+
+export default { User, employee };
