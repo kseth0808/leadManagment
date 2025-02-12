@@ -1,29 +1,25 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
-    name: {
+const dataManagementSchema = new mongoose.Schema({
+    userName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    userEmail: {
         type: String,
         required: true
     },
-    age: {
-        type: Number,
-        required: true
-    }
-});
-
-const User = mongoose.model('User', userSchema);
-
-const employeeSchema = new mongoose.Schema({
-    name: {
+    userDescription: {
         type: String,
         required: true
     },
-    age: {
-        type: Number,
-        required: true
+    userProfileImage: {
+        type: String,
+        required: false
     }
-});
+}, { timestamps: true });
 
-const employee = mongoose.model('employee', employeeSchema);
+const dataManagement = mongoose.model('dataManagement', dataManagementSchema);
 
-export default { User, employee };
+export { dataManagement };
