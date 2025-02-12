@@ -1,4 +1,4 @@
-const host = 'http://localhost:3001' || 'https://datamanagement-4.onrender.com/';
+const host = 'https://datamanagement-4.onrender.com';
 
 export const addUser = `${host}/data/addUser`
 export const getAllUsers = `${host}/data/getAllUsers`
