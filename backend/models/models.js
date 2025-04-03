@@ -1,25 +1,25 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const dataManagementSchema = new mongoose.Schema({
-    userName: {
+const userSchema = new mongoose.Schema({
+    name: {
         type: String,
-        required: true,
         trim: true
     },
-    userEmail: {
+    email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    userDescription: {
+    password: {
         type: String,
-        required: true
     },
-    userProfileImage: {
+    role: {
         type: String,
-        required: false
-    }
+        enum: ["Super Admin", "Sub-Admin", "Support Agent", "Lead"],
+        default: "User"
+    },
 }, { timestamps: true });
 
-const dataManagement = mongoose.model('dataManagement', dataManagementSchema);
+const User = mongoose.model("User", userSchema);
 
-export { dataManagement };
+export default User;

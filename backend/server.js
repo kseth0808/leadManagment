@@ -2,11 +2,19 @@ import express from 'express';
 import connectDB from './db.js';
 import apps from "./routes/app.js"
 import cors from 'cors';
+import { sessionConfig } from './middelWare/session.js';
 
 const app = express();
 const port = process.env.PORT || 3001
-app.use(cors());
 
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+sessionConfig(app);
 connectDB();
 
 app.use(express.json());

@@ -1,7 +1,9 @@
-const host = 'https://datamanagement-4.onrender.com';
+const host = 'http://localhost:3001';
 
-export const addUser = `${host}/data/addUser`
-export const getAllUsers = `${host}/data/getAllUsers`
-export const getUserDetails = `${host}/data/getUserDetail`
-export const postUpdateEentDetails = `${host}/data/postUpdateEventDetials`
-export const postDeleteUser = `${host}/data/deleteUser`
+export const postSignUp = `${host}/data/signUp`
+export const getUserData = `${host}/data/userData`
+export const postLogin = `${host}/data/login`
+export const getSubAdmin = `${host}/data/getSubAdmin`
+export const postCreateSubAdmin = `${host}/data/createSubAdmin`
+export const postEditCreateSubAdmin = `${host}/data/editSubAdmin`
+export const postDeleteSubAdmi = `${host}/data/deleteSubAdmin`

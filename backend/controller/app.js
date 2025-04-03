@@ -1,50 +1,33 @@
-import { dataManagement } from "../models/models.js";
+import User from "../models/models.js";
 
-export const getAllUsers = async (req, res) => {
+export const getLoggedInUser = async (req, res) => {
+    console.log("trigger")
     try {
-        const users = await dataManagement.find();
-        if (!users.length) {
-            return res.status(404).json({ status: 404, message: "No users found" });
+        if (!req.session.user) {
+            return res.status(401).json({ message: "Unauthorized. No user logged in." });
         }
 
-        const usersWithMappedIds = users.map(user => ({
-            userId: user._id,
-            userName: user.userName,
-            userEmail: user.userEmail,
-            userDescription: user.userDescription,
-            userProfileImage: user.userProfileImage
-                ? `data:image/jpeg;base64,${user.userProfileImage}`
-                : null,
-        }));
+        const user = await User.findById(req.session.user.id).select("-password");
+        console.log(user)
 
-        res.status(200).json({ status: 200, message: "Users retrieved successfully", users: usersWithMappedIds });
-    } catch (error) {
-        res.status(500).json({ status: 500, message: "Internal Server Error", error: error.message });
-    }
-};
-
-
-export const getUserDetails = async (req, res) => {
-    try {
-        const { userId } = req.params;
-        const user = await dataManagement.findById(userId);
         if (!user) {
-            return res.status(404).json({ status: 404, message: "User not found" });
+            return res.status(404).json({ message: "User not found" })
         }
-        const formattedUser = {
-            userId: user._id,
-            userName: user.userName,
-            userEmail: user.userEmail,
-            userDescription: user.userDescription,
-            userProfileImage: user.userProfileImage
-                ? `data:image/jpeg;base64,${user.userProfileImage}`
-                : null,
-        };
 
-        res.status(200).json({ status: 200, message: "User details retrieved successfully", user: formattedUser });
+        res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({ status: 500, message: "Internal Server Error", error: error.message });
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 };
+
+export const getSubAdmins = async (req, res) => {
+    try {
+        const subAdmins = await User.find({ role: "Sub-Admin" });
+        res.status(200).json({ message: "Sub-Admins fetched successfully", subAdmins });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
+
 
 
