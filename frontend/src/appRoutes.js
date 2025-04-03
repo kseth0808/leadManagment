@@ -1,4 +1,4 @@
-const host = 'http://localhost:3001';
+const host = 'https://leadmanagment.onrender.com';
 
 export const postSignUp = `${host}/data/signUp`
 export const getUserData = `${host}/data/userData`
